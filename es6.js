@@ -68,12 +68,12 @@ console.log(arr3);
 
 // 对象展开运算符  SE7提案
 let mike = { name: "huang", age: 50 };
-// mike = {...mike, sex: "男" };
-// console.log(mike);
+mike = {...mike, sex: "男" };
+console.log(mike);
 
 // 4.模版字符串。  `:后引号
-name = "哦哦哦";
-age = 15;
+let name = "哦哦哦";
+let age = 15;
 console.log(`我叫 ${ name } ,今年 ${ age }`);
 
 // 5.解构赋值  快速从数组或对象中提取变量，之后用一个表达式读取整个结构。
@@ -116,3 +116,24 @@ class Dog extends People {
 };
 const d = new Dog("狗", 2, "黄色");
 console.log(d.shuo());
+
+// 7.模块
+// 创建
+/*
+function hello() {
+}
+export hello;
+*/
+/*
+export const PI = 3.14;
+export function hello() {
+}
+*/
+// export default function () {}
+
+// 导出
+// import { hello } from "./hello.js"
+// hello();
+// import { PI, hello } from "./hello.js"
+// import * as util from "./hello.js"
+// util.hello();
