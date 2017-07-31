@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceRoot}/let 和 const 命令/main.js"
+      "program": "${workspaceRoot}/2.变量的解析赋值/main.js"
     },
     {
       "type": "node",
