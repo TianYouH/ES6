@@ -68,7 +68,7 @@
 //     [a, b] = [b, a + b];
 //   }
 // }
-
+ 
 // let [first, second, third, fourth, fifth, sixth] = fibs();
 // console.log(sixth) // 5
 
