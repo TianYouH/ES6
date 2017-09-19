@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceRoot}/3.字符串的扩展/main.js"
+      "program": "${workspaceRoot}/JavaScript/Array/main.js"
     },
     {
       "type": "node",
