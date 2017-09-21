@@ -1,5 +1,6 @@
 // Array
 let arr = ["黄", "金", "亮", "好"];
+let numArr = Array.of(7)
 let str = 'huang';
 // 属性
 
@@ -55,4 +56,31 @@ let str = 'huang';
 // target(目标位置) === 1:"金"
 // start(copy起始位置) === 2:"亮", 
 // end(copy结束位置不包含该位置) === 3:"你"
+}
+
+// 6.entries() 方法返回一个新的Array Iterator对象，该对象包含数组中每个索引的键/值对。
+
+{
+// let iterator = arr.entries();
+// console.log(iterator); // Array Iterator {}
+// console.log(iterator.next().value);  // [0, "黄"]
+// console.log(iterator.next().value);  // [1, "金"]
+// console.log(iterator.next().value);  // [2, "亮"]
+// for (let e of iterator) {
+//     console.log(e);  //[ 3, '好' ]
+// }
+}
+
+// 7.every() 方法测试数组的所有元素是否都通过了指定函数的测试。
+{
+    // let bool = numArr.every((item, index, arr) => {
+    //     return (item > 5) //true   只要有一个成立就是true
+    // })
+    // console.log(bool)
+}
+
+// 8.fill() 方法用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。
+{
+let numbers = [1, 2, 3];
+console.log(numbers.fill(6));  //[ 6, 6, 6 ]
 }
