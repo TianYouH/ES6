@@ -20,7 +20,7 @@ let str = 'huang';
 //     return i
 // }))
 
-// 2.Array.isArray() 用于确定传递的值是否是一个 Array。
+// ⭐2.Array.isArray() 用于确定传递的值是否是一个 Array。
 // console.log(Array.isArray(arr))  //true
 // console.log(Array.isArray(str))  //false
 
@@ -32,7 +32,7 @@ let str = 'huang';
 // console.log(Array(7))          // [ , , , , , , ]
 // console.log(Array(1, 2, 3))    // [1, 2, 3]
 
-// 4.concat() 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
+// ⭐4.concat() 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。
 
 {
 // let arr1 = ["a", "b", "c"];
@@ -85,7 +85,7 @@ let str = 'huang';
 // console.log(numbers.fill(6));  //[ 6, 6, 6 ]
 }
 
-// 9.filter() 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。 
+// ⭐9.filter() 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。 
 {
     // test = (item, index, arr) =>{
     //     return item > 5
