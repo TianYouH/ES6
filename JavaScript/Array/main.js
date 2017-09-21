@@ -1,6 +1,6 @@
 // Array
 let arr = ["黄", "金", "亮", "好"];
-let numArr = Array.of(7)
+let numArr = [1, 2, 3, 4, 5, 6, 7]
 let str = 'huang';
 // 属性
 
@@ -81,6 +81,18 @@ let str = 'huang';
 
 // 8.fill() 方法用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。
 {
-let numbers = [1, 2, 3];
-console.log(numbers.fill(6));  //[ 6, 6, 6 ]
+// let numbers = [1, 2, 3];
+// console.log(numbers.fill(6));  //[ 6, 6, 6 ]
+}
+
+// 9.filter() 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。 
+{
+    // test = (item, index, arr) =>{
+    //     return item > 5
+    // }
+    // let arr = numArr.filter(test) //[ 6, 7 ]
+
+    // let arr = numArr.filter((item, index, arr) => item > 5  ) //[ 6, 7 ]
+
+    // console.log(arr)
 }
