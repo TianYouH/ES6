@@ -74,7 +74,7 @@ let str = 'huang';
 // 7.every() 方法测试数组的所有元素是否都通过了指定函数的测试。
 {
     // let bool = numArr.every((item, index, arr) => {
-    //     return (item > 5) //true   只要有一个成立就是true
+    //     return (item < 7) //false   只要有一个不成立就是false
     // })
     // console.log(bool)
 }
