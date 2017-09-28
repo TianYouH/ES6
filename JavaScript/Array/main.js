@@ -96,3 +96,73 @@ let str = 'huang';
 
     // console.log(arr)
 }
+
+// 10. find() 方法返回数组中满足提供的测试函数的"第一个元素的值"。否则返回 undefined。
+{
+// function isBigEnough(element) {
+//     return element >= 5;
+//   }
+// console.log(numArr.find(isBigEnough)); // 5
+
+// numArr.find((item, index, arr) => {
+//     return item >= 6;
+// })
+
+//   另请参见  findIndex() 方法，它返回数组中找到的元素的索引，而不是其值。
+//   如果你需要找到一个元素的位置或者一个元素是否存在于数组中，使用Array.prototype.indexOf() 或 Array.prototype.includes()
+}
+
+// 11.findIndex()方法返回数组中满足提供的测试函数的第一个元素的索引。否则返回-1。
+{
+// function isBigEnough(element) {
+//     return element >= 6;
+//   }
+  
+//  console.log(numArr.findIndex(isBigEnough)); // 5
+//   另请参见  find() 方法，它返回数组中找到的元素的值，而不是其索引。
+}
+
+// 12.forEach() 方法对数组的每个元素执行一次提供的函数。
+{
+// arr.forEach(function(element) {
+//     console.log(element + '45');
+// });
+// console.log(arr)  //[ '黄', '金', '亮', '好' ]   只执行不对函数内部操作
+// 黄45
+// 金45
+// 亮45
+// 好45
+}
+
+// 13.includes() 方法用来判断一个数组是否包含一个指定的值，如果是，酌情返回 true或 false。
+{
+// console.log(arr.includes('黄'));  // true 
+// console.log(arr.includes(4));  // false
+}
+
+// 14.indexOf()方法返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。
+// 注意：对于String方法，请参阅 String.prototype.indexOf()。
+{
+// console.log(numArr.indexOf(2)); // 1
+// console.log(numArr.indexOf(6)); // 5
+// console.log(numArr.indexOf(7)); // 6
+// console.log(numArr.indexOf(8)); // -1
+// console.log(numArr.indexOf(9)); // -1
+
+// if (numArr.indexOf(3) === -1) {
+//   // element doesn't exist in array
+// }
+}
+
+// 15.join() 方法将数组（或一个类数组对象）的所有元素连接到一个字符串中。返回一个拼接好的字符串
+{
+// console.log(arr.join()); // 默认为 "," 黄,金,亮,好
+
+// console.log(arr.join("")); // 分隔符 === 空字符串 ""  黄金亮好
+
+// console.log(arr.join("-")); // 分隔符 "-"  黄-金-亮-好
+
+// console.log(arr);  //[ '黄', '金', '亮', '好' ]
+}
+
+// 16.
