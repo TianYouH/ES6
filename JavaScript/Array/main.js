@@ -165,4 +165,32 @@ let str = 'huang';
 // console.log(arr);  //[ '黄', '金', '亮', '好' ]
 }
 
-// 16.
+// 16. keys() 方法返回一个新的Array迭代器，它包含数组中每个索引的键。
+{
+// let iterator = arr.keys();
+
+// console.log(iterator);// Array Iterator {}
+
+// console.log(iterator.next()); // Object {value: 0, done: false}
+
+// console.log(iterator.next()); // Object {value: 1, done: false}
+
+// console.log(iterator.next()); // Object {value: 2, done: false}
+
+// console.log(iterator.next()); // Object {value: undefined, done: true}
+}
+
+// 17.lastIndexOf() 方法返回指定元素（也即有效的 JavaScript 值或变量）在数组中的最后一个的索引，如果不存在则返回 -1。从数组的后面向前查找，从 fromIndex 处开始。
+// {
+// let index = numArr.lastIndexOf(2);// index is 3
+// index = numArr.lastIndexOf(7);
+// console.log(index);// index is 6
+// index = numArr.lastIndexOf(3, 3);
+// console.log(index);// index is 2
+// index = numArr.lastIndexOf(2, 2);
+// console.log(index);// index is 1
+// index = numArr.lastIndexOf(7, -2);
+// console.log(index);// index is -1
+// index = numArr.lastIndexOf(2, -1);
+// console.log(index);// index is 1
+// }
