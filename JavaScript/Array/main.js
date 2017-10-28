@@ -194,3 +194,150 @@ let str = 'huang';
 // index = numArr.lastIndexOf(2, -1);
 // console.log(index);// index is 1
 // }
+
+// map() 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。
+{
+// let doubles = numArr.map( x => x ** 2);  // ** 指数运算符 例：3**3 = 27
+// console.log(doubles);
+// let halves = numArr.map(x => x / 2);
+// console.log(halves);
+// let roots = numArr.map(Math.sqrt);
+// console.log(roots);
+}
+
+// pop()方法从数组中删除最后一个元素，并返回该元素的值。此方法更改数组的长度。
+{
+// console.log(numArr.length) //7
+// console.log(numArr.pop()) //7
+// numArr.pop();
+// console.log(numArr); // [ 1, 2, 3, 4, 5 ]
+// console.log(numArr.length) //5
+}
+
+// push() 方法将一个或多个元素添加到数组的末尾，并返回数组的新长度。
+{
+// console.log(numArr.push(8, 9)) //9
+// console.log(numArr) // [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+
+// shift() 方法从数组中删除第一个元素，并返回该元素的值。此方法更改数组的长度。
+{
+    // let a = [1, 2, 3];
+    // let b = a.shift();   
+    // console.log(a); // [2, 3]
+    // console.log(b); // 1
+}
+
+// reduce() 方法对累加器和数组中的每个元素（从左到右）应用一个函数，将其减少为单个值。
+{
+// let total = [1, 2, 3].reduce(function(initVal, currentVal, index, arr) {
+//   return initVal + currentVal;
+// }, 2); //参数而是可选初始值，如果不填写将从数组第一个只开始结果也就是6
+// console.log(total) //8
+
+// let flattened = [[0, 1], [2, 3], [4, 5]].reduce(function(a, b) {
+//   return a.concat(b);
+// }, ['5']);
+// console.log(flattened) // [ '5', 0, 1, 2, 3, 4, 5 ]
+
+// let names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+// let countedNames = names.reduce(function (allNames, name) { 
+//   if (name in allNames) {
+//     allNames[name]++;
+//   }
+//   else {
+//     allNames[name] = 1;
+//   }
+//   return allNames;
+// }, {});
+// console.log(countedNames) //{ Alice: 2, Bob: 1, Tiff: 1, Bruce: 1 }
+
+// let obj = {name: 'huang', age: 13};
+// if ('age' in obj) {
+//     console.log('age属性存在')
+// }else{
+//     console.log('age不存在')
+// }
+}
+
+// reduceRight() 方法接受一个函数作为累加器（accumulator）和数组的每个值（从右到左）将其减少为单个值。
+// PS: 与  Array.prototype.reduce() 的执行方向相反
+{
+// let flattened = [
+//     [0, 1], 
+//     [2, 3], 
+//     [4, 5]
+// ].reduceRight((a, b) => {
+//     return a.concat(b);
+// }, []);
+// console.log(flattened) // [ 4, 5, 2, 3, 0, 1 ]
+}
+
+// reverse() 方法将数组中元素的位置颠倒。
+// 第一个数组元素成为最后一个数组元素，最后一个数组元素成为第一个。
+{
+//  numArr.reverse()
+//  console.log(numArr) //[ 7, 6, 5, 4, 3, 2, 1 ]
+}
+
+// slice() 方法返回一个从开始到结束（不包括结束）选择的数组的一部分浅拷贝到一个新数组对象。原始数组不会被修改。
+{
+// let a = ['zero', 'one', 'two', 'three'];
+// let sliced = a.slice(1, 3);
+
+// console.log(a);      // ['zero', 'one', 'two', 'three']
+// console.log(sliced); // ['one', 'two']
+}
+
+// some() 方法测试数组中的某些元素是否通过由提供的函数实现的测试。一个通过即可
+{
+// const isBiggerThan10 = (element, index, array) => {
+//   return element > 10;
+// }
+// console.log([2, 5, 8, 1, 4].some(isBiggerThan10)) // false
+
+// console.log([12, 5, 8, 1, 4].some(isBiggerThan10)) // true
+}
+
+// sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺序是根据字符串Unicode码点。
+{
+    // let fruit = ['cherries', 'apples', 'bananas'];
+    // console.log(fruit.sort()) // ['apples', 'bananas', 'cherries']
+    
+    // let scores = [1, 10, 21, 2]; 
+    // console.log(scores.sort()) // [1, 10, 2, 21] // 注意10在2之前, // 因为在 Unicode 指针顺序中"10"在"2"之前
+
+    // scores.sort((a, b) => {
+    //     if (a<b) { return -1 } //小于 0 ，那么 a 会被排列到 b 之前
+    //     if (a>b) { return 1 }  //大于 0 ， b 会被排列到 a 之前。
+    //     return 0  //等于 0 ， a 和 b 的相对位置不变。
+    // })
+    // console.log(scores) //[ 1, 2, 10, 21 ]
+
+    // let things = ['word', 'Word', '1 Word', '2 Words']; 
+    // console.log(things.sort()) // ['1 Word', '2 Words', 'Word', 'word'] // 在Unicode中, 数字在大写字母之前, // 大写字母在小写字母之前.
+}
+
+// splice() 方法通过删除现有元素和/或添加新元素来更改一个数组的内容。
+{
+    // let myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+    
+    // myFish.splice(2, 0, 'drum'); // 在索引为2的位置插入'drum'
+    // console.log(myFish)// myFish 变为 ["angel", "clown", "drum", "mandarin", "sturgeon"]
+    
+    // myFish.splice(2, 1); // 从索引为2的位置删除一项（也就是'drum'这一项）
+    // console.log(myFish)// myFish 变为 ["angel", "clown", "mandarin", "sturgeon"]
+}
+
+// toLocaleString() 返回一个字符串表示数组中的元素。数组中的元素将使用各自的 toLocaleString 方法转成字符串，这些字符串将使用一个特定语言环境的字符串（例如一个逗号 ","）隔开。
+{
+// let number = 1337;
+// let date = new Date();
+// console.log(date.toLocaleTimeString())
+// let myArr = ["foo", number, date ];
+
+// let str = myArr.toLocaleString(); 
+// console.log(str); 
+// 输出 "1,337,2017/8/13 下午8:32:24,foo"
+// 假定运行在中文（zh-CN）环境，北京时区
+}
