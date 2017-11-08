@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceRoot}/JavaScript/Array/main.js"
+      "program": "${workspaceRoot}/13.Promise/main.js"
     },
     {
       "type": "node",
