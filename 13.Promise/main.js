@@ -96,3 +96,19 @@ Promise
   // // 2
   // // 1
 }
+
+// Promise.prototype.then()🚀
+let promise = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('黄金亮大好人')
+    }, 2000);
+  })
+}
+//链式执行
+promise().then(function(str) {
+  console.log(str)
+    return promise();
+}).then(function(str) {
+  console.log(str+ '闪闪发光')
+});
