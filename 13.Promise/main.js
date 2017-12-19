@@ -109,6 +109,7 @@ let promise = () => {
 promise().then(function(str) {
   console.log(str)
     return promise();
-}).then(function(str) {
-  console.log(str+ '闪闪发光')
-});
+}).then(
+  comments => console.log("resolved: ", comments),
+  err => console.log("rejected: ", err)
+);
