@@ -42,7 +42,7 @@ Promise
   //     client.responseType = "json";
   //     client.setRequestHeader("Accept", "application/json");
   //     client.send();
-  
+
   //     function handler() {
   //       if (this.readyState !== 4) {
   //         return;
@@ -54,10 +54,10 @@ Promise
   //       }
   //     };
   //   });
-  
+
   //   return promise;
   // };
-  
+
   // getJSON("/posts.json").then(function(json) {
   //   console.log('Contents: ' + json);
   // }, function(error) {
@@ -74,11 +74,11 @@ Promise
   // let p1 = new Promise(function (resolve, reject) {
   //   setTimeout(() => reject(new Error('fail')), 3000)
   // })
-  
+
   // let p2 = new Promise(function (resolve, reject) {
   //   setTimeout(() => resolve(p1), 1000)
   // })
-  
+
   // p2
   //   .then(result => console.log(result))
   //   .catch(error => console.log(error))
@@ -98,18 +98,108 @@ Promise
 }
 
 // Promise.prototype.then()🚀
-let promise = () => {
+let promiseResolve = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve('黄金亮大好人')
     }, 2000);
   })
 }
+let promiseRejected = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject('黄金亮大坏蛋')
+    }, 2000);
+  })
+}
+
+// 抛出错误模拟🚕
+// 写法一
+// const promiseError = new Promise(function(resolve, reject) {
+//   try {
+//     throw new Error('test');
+//   } catch(e) {
+//     reject(e);
+//   }
+// });
+
+// // 写法二
+// const promiseError = new Promise(function(resolve, reject) {
+//   reject(new Error('test'));
+// });
+
+// 写法三
+const promiseError = new Promise((resolve, reject) => {
+  throw new Error('错误会被catch捕获到')
+})
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 //链式执行
-promise().then(function(str) {
-  console.log(str)
-    return promise();
-}).then(
-  comments => console.log("resolved: ", comments),
-  err => console.log("rejected: ", err)
-);
+{
+  // promiseResolve().then(function(str) {
+  //   console.log(str)
+  //     return promiseResolve();
+  // }).then(
+  //   comments => console.log("resolved: ", comments),
+  //   err => console.log("rejected: ", err)
+  // );
+}
+
+// Promise.prototype.catch()🚀
+{
+  // promiseRejected().then((a) => {
+  //   console.log('resolved:', a)
+  // }).catch((b) => {
+  //   console.log('reject:', b)
+  // })
+}
+
+{
+  // p.then((val) => console.log('fulfilled:', val))
+  //   .catch((err) => console.log('rejected', err));
+  // // 等同于
+  // p.then((val) => console.log('fulfilled:', val))
+  //   .then(null, (err) => console.log("rejected:", err));
+}
+
+// then方法指定的回调函数，如果运行中抛出错误，也会被catch方法捕获。⭐
+{
+  // // 写法一
+  // promiseError.then( result => {
+  //   console.log('1', result)
+  // }, error => {
+  //   console.log('2', error)
+  // })
+
+  // // 写法二
+  // promiseError.then( result => {
+  //   console.log('1', result)
+  // }).catch( error => {
+  //   console.log('2', error)
+  // })
+
+  // // 写法三
+  // promiseError.catch( error => {
+  //   console.log('3', error)
+  // })
+}
+
+// 如果 Promise 状态已经变成resolved，再抛出错误是无效的。
+{
+  // const promise = new Promise((resolve, reject) => {
+  //   resolve('成功哈哈')
+  //   throw new Error('成功后抛出错误测试') //会抛出错误，但不会被promise的reject处理
+  // })
+
+  // promise.then(
+  //   resolve => {
+  //     console.log('成功', resolve)
+  //   },
+  //   reject => {
+  //     console.log('失败', reject)
+  //   }
+  // )
+}
+
+// Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个catch语句捕获。
