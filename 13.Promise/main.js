@@ -233,14 +233,78 @@ const promiseError = new Promise((resolve, reject) => {
 
 
 {
-  const promise = new Promise(function (resolve, reject) {
-    resolve('ok');
-    setTimeout(function () { throw new Error('test'); console.log('123456') }, 0)
-  });
-  promise.then(function (value) { console.log(value) });
-  // ok
-  // Uncaught Error: test
+  // const promise = new Promise(function (resolve, reject) {
+  //   resolve('ok');
+  //   // {
+  //   //   throw new Error('test')
+  //   // }
+  //   setTimeout(function () { throw new Error('test'); console.log('123456') }, 0) //
+  // });
+  // promise.then(function (value) { console.log(value) });
+  // // ok
+  // // Uncaught Error: test
 }
 // Promise 指定在下一轮“事件循环”再抛出错误。
 // 到了那个时候，Promise 的运行已经结束了，所以这个错误是在 Promise 函数体外抛出的，会冒泡到最外层，成了未捕获的错误。
 
+{
+  // const someAsyncThing = function() {
+  //   return new Promise(function(resolve, reject) {
+  //     // 下面一行会报错，因为x没有声明
+  //     resolve(x + 2);
+  //   });
+  // };
+  
+  // someAsyncThing()
+  // .catch(function(error) {
+  //   console.log('捕获错误', error);
+  // })
+  // .then(function() {
+  //   console.log('继续链式调用');
+  // });
+  // // oh no [ReferenceError: x is not defined]
+  // // carry on
+}
+// 上面代码运行完catch方法指定的回调函数，会接着运行后面那个then方法指定的回调函数。
+// 如果没有报错，则会跳过catch方法。
+
+{
+  const someAsyncThing = function() {
+    return new Promise(function(resolve, reject) {
+      // 下面一行会报错，因为x没有声明
+      resolve(x + 2);
+    });
+  };
+  
+  // someAsyncThing().then(function() {
+  //   return someOtherAsyncThing();
+  // }).catch(function(error) {
+  //   console.log('捕获x错误', error);
+  //   // 下面一行会报错，因为 y 没有声明
+  //   y + 2;
+  // }).then(function() {
+  //   console.log('被上面捕获错误阻止');
+  // });
+
+  // 上面代码中，catch方法抛出一个错误，因为后面没有别的catch方法了，导致这个错误不会被捕获，也不会传递到外层。如果改写一下，结果就不一样了
+
+  someAsyncThing().then(function() {
+    // 因为上面x未定义,所以不会执行这里
+    return someOtherAsyncThing();
+  }).then(
+    response => {
+      console.log('获得的值为', response)
+    }
+  ).catch(function(error) {
+    console.log('oh no', error);
+    // 下面一行会报错，因为y没有声明
+    y + 2;
+  }).catch(function(error) {
+    console.log('carry on', error);
+  });
+  // oh no [ReferenceError: x is not defined]
+  // carry on [ReferenceError: y is not defined]
+
+  // 上面代码中，第二个catch方法用来捕获，前一个catch方法抛出的错误。
+
+}
