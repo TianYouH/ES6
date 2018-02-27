@@ -143,20 +143,20 @@ Symbol 值通过Symbol函数生成。
   // log(log.levels.INFO, 'info message');
 
   // 这个看懂啦。。
-  const COLOR_RED = Symbol();
-  const COLOR_GREEN = Symbol();
+  // const COLOR_RED = Symbol();
+  // const COLOR_GREEN = Symbol();
 
-  function getComplement(color) {
-    switch (color) {
-      case COLOR_RED:
-      console.log('啦啦啦红色');
-        return COLOR_GREEN;
-      case COLOR_GREEN:
-      console.log('啦啦啦绿色');
-        return COLOR_RED;
-      default:
-        throw new Error('Undefined color');
-    }
-  }
-  getComplement(COLOR_RED)
+  // function getComplement(color) {
+  //   switch (color) {
+  //     case COLOR_RED:
+  //     console.log('啦啦啦红色');
+  //       return COLOR_GREEN;
+  //     case COLOR_GREEN:
+  //     console.log('啦啦啦绿色');
+  //       return COLOR_RED;
+  //     default:
+  //       throw new Error('Undefined color');
+  //   }
+  // }
+  // getComplement(COLOR_RED)
 }
