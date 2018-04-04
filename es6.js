@@ -30,7 +30,7 @@ console.log(doubleNumber);
 
 let kitty = {
     age: 5,
-    grow: function() {
+    grow: function () {
         setTimeout(() => {
             console.log(this.age);
         }, 2000);
@@ -55,7 +55,7 @@ test("闪闪", 18, "火锅");
 // 3.展开运算符
 
 // 函数调用  函数把一个数组作为一个参数依次调用
-function test2(x, y, z) {};
+function test2(x, y, z) { };
 var args = [1, 2, 3];
 // test2.apply(null, args);  //老
 test2(...args);
@@ -68,25 +68,25 @@ console.log(arr3);
 
 // 对象展开运算符  SE7提案
 let mike = { name: "huang", age: 50 };
-mike = {...mike, sex: "男" };
+mike = { ...mike, sex: "男" };
 console.log(mike);
 
 // 4.模版字符串。  `:后引号
 let name = "哦哦哦";
 let age = 15;
-console.log(`我叫 ${ name } ,今年 ${ age }`);
+console.log(`我叫 ${name} ,今年 ${age}`);
 
 // 5.解构赋值  快速从数组或对象中提取变量，之后用一个表达式读取整个结构。
 
 // 解构数组
 let foo = ["黄", "金", "亮"];
 let [one, two, three] = foo;
-console.log(`${ one } , ${ two } , ${ three }`);
+console.log(`${one} , ${two} , ${three}`);
 
 // 解构对象  
 let person = { age: 20, name: "黄金亮" };
 let { age1, name1 } = person;
-console.log(`${ age1 } ${ name1 }`);
+console.log(`${age1} ${name1}`);
 
 // 6.类
 class People {
@@ -95,7 +95,7 @@ class People {
         this.age = age;
     };
     shout() {
-        return `我叫 ${ this.name } ，今年 ${ this.age } 岁啦,`
+        return `我叫 ${this.name} ，今年 ${this.age} 岁啦,`
     };
     static foo() {
         return "我是一个人类";
