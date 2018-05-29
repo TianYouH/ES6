@@ -293,3 +293,386 @@ console.log(_.join(['a', 'b', 'c'], '~'));
 // 🆕23.
 // 🚀
 // 🆕24.
+
+
+// “集合” 方法(“Collection” Methods)
+
+// 处理🚀
+
+// 🆕1. countBy(collection, [iteratee=_.identity])：创建一个组成对象，key（键）是经过 iteratee（迭代函数） 执行处理collection中每个元素后返回的结果，每个key（键）对应的值是 iteratee（迭代函数）返回该key（键）的次数（愚人码头注：迭代次数）。 iteratee 调用一个参数：(value)。
+// 把给定的集合根据条件进行分类统计
+/*
+console.log(_.countBy([6.1, 4.2, 6.3], Math.floor));
+// => { '4': 1, '6': 2 }
+ 
+// The `_.property` iteratee shorthand.
+console.log(_.countBy(['one', 'two', 'three'], 'length'));
+// => { '3': 2, '5': 1 }
+*/
+
+// 🆕1.1.groupBy(collection, [iteratee=_.identity])：创建一个对象，key 是 iteratee 遍历 collection(集合) 中的每个元素返回的结果。 分组值的顺序是由他们出现在 collection(集合) 中的顺序确定的。每个键对应的值负责生成 key 的元素组成的数组。iteratee 调用 1 个参数： (value)。
+// 把给定的集合根据条件进行分类打包并标识
+/*
+console.log(_.groupBy([6.1, 4.2, 6.3], Math.floor));
+// => { '4': [4.2], '6': [6.1, 6.3] }
+ 
+// The `_.property` iteratee shorthand.
+console.log(_.groupBy(['one', 'two', 'three'], 'length'));
+// => { '3': ['one', 'two'], '5': ['three'] }
+*/
+
+// 🆕1.2.flatMap(collection, [iteratee=_.identity])：创建一个扁平化（愚人码头注：同阶数组）的数组，这个数组的值来自collection（集合）中的每一个值经过 iteratee（迭代函数） 处理后返回的结果，并且扁平化合并。 iteratee 调用三个参数： (value, index|key, collection)。
+// 对集合值进行迭代，并将最后对值处理的结果进行扁平化返回。
+/*
+function duplicate(n) {
+    return [n, n];
+  }
+  console.log(_.flatMap([1, 2], duplicate));
+  // => [1, 1, 2, 2]
+*/
+
+// 🆕1.3.flatMapDeep(collection, [iteratee=_.identity])：这个方法类似 _.flatMap 不同之处在于，_.flatMapDeep 会继续扁平化递归映射的结果。
+// 对集合值进行迭代，并将最后对值处理的结果进行深度扁平化返回。
+/*
+function duplicate(n) {
+  return [[[n, n]]];
+}
+_.flatMapDeep([1, 2], duplicate);
+// => [1, 1, 2, 2]
+*/
+
+// 🆕1.4.flatMapDepth(collection, [iteratee=_.identity], [depth=1])：该方法类似_.flatMap，不同之处在于，_.flatMapDepth 会根据指定的 depth（递归深度）继续扁平化递归映射结果。
+// 对集合值进行迭代，并将最后对值处理的结果进行给定深度扁平化返回。
+/*
+function duplicate(n) {
+    return [[[n, n]]];
+  }
+  console.log(_.flatMapDepth([1, 2], duplicate, 2));
+  // => [[1, 1], [2, 2]]
+*/
+
+// 🆕1.5.invokeMap(collection, path, [args])：调用path（路径）上的方法处理 collection(集合)中的每个元素，返回一个数组，包含每次调用方法得到的结果。任何附加的参数提供给每个被调用的方法。如果methodName（方法名）是一个函数，每次调用函数时，内部的 this 指向集合中的每个元素。
+// 遍历给定集合，并对集合种的每个元素执行给定函数，并以函数返回结果替换原值
+/*
+console.log(_.invokeMap([[5, 1, 7], [3, 2, 1]], 'sort'));
+// => [[1, 5, 7], [1, 2, 3]]
+console.log(_.invokeMap([123, 456], String.prototype.split, ''));
+// => [['1', '2', '3'], ['4', '5', '6']]
+*/
+
+// 🆕1.6.keyBy(collection, [iteratee=_.identity])：创建一个对象组成， key（键） 是 collection（集合）中的每个元素经过 iteratee（迭代函数） 处理后返回的结果。 每个 key（键）对应的值是生成key（键）的最后一个元素。iteratee（迭代函数）调用1个参数：(value)。
+/*
+var array = [
+    { 'dir': 'left', 'code': 97 },
+    { 'dir': 'right', 'code': 100 }
+  ];
+  _.keyBy(array, function(o) {
+    return String.fromCharCode(o.code);
+  });
+  // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+  console.log(_.keyBy(array, 'dir'));
+  // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
+*/
+
+// 🆕1.7.sortBy(collection, [iteratees=[_.identity]])：创建一个元素数组。 以 iteratee 处理的结果升序排序。 这个方法执行稳定排序，也就是说相同元素会保持原始排序。 iteratees 调用1个参数： (value)。
+// 排序
+/*
+var users = [
+    { 'user': 'fred',   'age': 48 },
+    { 'user': 'barney', 'age': 36 },
+    { 'user': 'fred',   'age': 40 },
+    { 'user': 'barney', 'age': 34 }
+  ];
+   
+  console.log(_.sortBy(users, function(o) { return o.user; }));
+  // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+   
+  console.log(_.sortBy(users, ['user', 'age']));
+  // => objects for [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
+   
+  _.sortBy(users, 'user', function(o) {
+    return Math.floor(o.age / 10);
+  });
+  // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+*/
+
+// 🆕1.8.orderBy(collection, [iteratees=[_.identity]], [orders]):此方法类似于_.sortBy，除了它允许指定 iteratee（迭代函数）结果如何排序。 如果没指定 orders（排序），所有值以升序排序。 否则，指定为"desc" 降序，或者指定为 "asc" 升序，排序对应值。
+// 对集合根据需要条件进行排序
+/*
+var users = [
+    { 'user': 'fred',   'age': 48 },
+    { 'user': 'barney', 'age': 34 },
+    { 'user': 'fred',   'age': 40 },
+    { 'user': 'barney', 'age': 36 }
+  ];
+   
+  // 以 `user` 升序排序 再  `age` 以降序排序。
+  console.log(_.orderBy(users, ['user', 'age'], ['asc', 'desc']));
+  // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+*/
+
+// 1.9.partition(collection, [predicate=_.identity]):创建一个分成两组的元素数组，第一组包含predicate（断言函数）返回为 truthy（真值）的元素，第二组包含predicate（断言函数）返回为 falsey（假值）的元素。predicate 调用1个参数：(value)。
+// 把给定集合根据给定条件拆分成两组，第一组条件为真，第二组条件为假
+/*
+var users = [
+    { 'user': 'barney',  'age': 36, 'active': false },
+    { 'user': 'fred',    'age': 40, 'active': true },
+    { 'user': 'pebbles', 'age': 1,  'active': false }
+  ];
+   
+  console.log(_.partition(users, function(o) { return o.active; }));
+  // => objects for [['fred'], ['barney', 'pebbles']]
+   
+  // The `_.matches` iteratee shorthand.
+  console.log(_.partition(users, { 'age': 1, 'active': false }));
+  // => objects for [['pebbles'], ['barney', 'fred']]
+   
+  // The `_.matchesProperty` iteratee shorthand.
+  console.log(_.partition(users, ['active', false]));
+  // => objects for [['barney', 'pebbles'], ['fred']]
+   
+  // The `_.property` iteratee shorthand.
+  console.log(_.partition(users, 'active'));
+  // => objects for [['fred'], ['barney', 'pebbles']]
+*/
+
+// 🆕1.9.1.reduce(collection, [iteratee=_.identity], [accumulator])：压缩 collection（集合）为一个值，通过 iteratee（迭代函数）遍历 collection（集合）中的每个元素，每次返回的值会作为下一次迭代使用(愚人码头注：作为iteratee（迭代函数）的第一个参数使用)。 如果没有提供 accumulator，则 collection（集合）中的第一个元素作为初始值。(愚人码头注：accumulator参数在第一次迭代的时候作为iteratee（迭代函数）第一个参数使用。) iteratee 调用4个参数：(accumulator, value, index|key, collection). 
+// 迭代给定集合并返回期望的元素叠加结果
+/*
+_.reduce([1, 2], function(sum, n) {
+    return sum + n;
+  }, 0);
+  // => 3
+   
+  _.reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
+    (result[value] || (result[value] = [])).push(key);
+    return result;
+  }, {});
+  // => { '1': ['a', 'c'], '2': ['b'] } (无法保证遍历的顺序)
+  */
+
+//   🆕1.9.2.reduceRight(collection, [iteratee=_.identity], [accumulator])：这个方法类似 _.reduce ，除了它是从右到左遍历collection（集合）中的元素的。
+/*
+var array = [[0, 1], [2, 3], [4, 5]];
+ 
+_.reduceRight(array, function(flattened, other) {
+  return flattened.concat(other);
+}, []);
+// => [4, 5, 2, 3, 0, 1]
+*/
+
+// 🆕1.9.3：shuffle(collection):创建一个被打乱值的集合。 使用 Fisher-Yates shuffle 版本。
+/*
+console.log(_.shuffle([1, 2, 3, 4]));
+// => [4, 1, 3, 2]
+*/
+
+// 效验🚀
+
+// 🆕2.every(collection, [predicate=_.identity])：通过 predicate（断言函数） 检查 collection（集合）中的 所有 元素是否都返回真值。一旦 predicate（断言函数） 返回假值，迭代就马上停止。predicate（断言函数）调用三个参数： (value, index|key, collection)。 
+// 迭代给定集合元素是否符合条件，只要有一个不符合就会终止迭代，返回false;
+/*
+console.log(_.every([true, 1, null, 'yes'], Boolean));
+// => false
+var users = [
+  { 'user': 'barney', 'age': 36, 'active': false },
+  { 'user': 'fred',   'age': 40, 'active': false }
+];
+ 
+// The `_.matches` iteratee shorthand.
+console.log(_.every(users, { 'user': 'barney', 'active': false }));
+// => false
+ 
+// The `_.matchesProperty` iteratee shorthand.
+console.log(_.every(users, ['active', false]));
+// => true
+ 
+// The `_.property` iteratee shorthand.
+console.log(_.every(users, 'active'));
+// => false
+*/
+
+// 🆕2.1.some(collection, [predicate=_.identity])：通过 predicate（断言函数） 检查collection（集合）中的元素是否存在 任意 truthy（真值）的元素，一旦 predicate（断言函数） 返回 truthy（真值），遍历就停止。 predicate 调用3个参数：(value, index|key, collection)。
+// 迭代给定集合元素是否符合需求，如果都符合就返回true,否则返回false
+/*
+console.log(_.some([null, 0, 'yes', false], Boolean));
+// => true
+ 
+var users = [
+  { 'user': 'barney', 'active': true },
+  { 'user': 'fred',   'active': false }
+];
+ 
+// The `_.matches` iteratee shorthand.
+console.log(_.some(users, { 'user': 'barney', 'active': false }));
+// => false
+ 
+// The `_.matchesProperty` iteratee shorthand.
+console.log(_.some(users, ['active', false]));
+// => true
+ 
+// The `_.property` iteratee shorthand.
+console.log(_.some(users, 'active'));
+// => true
+*/
+
+// 🆕2.2.includes(collection, value, [fromIndex=0])：检查 value(值) 是否在 collection(集合) 中。如果 collection(集合)是一个字符串，那么检查 value（值，子字符串） 是否在字符串中， 否则使用 SameValueZero 做等值比较。 如果指定 fromIndex 是负数，那么从 collection(集合) 的结尾开始检索。
+// 查找给定值是否存在于集合中
+/*
+console.log(_.includes([1, 2, 3], 1));
+// => true
+ 
+console.log(_.includes([1, 2, 3], 1, 2));
+// => false
+ 
+console.log(_.includes({ 'user': 'fred', 'age': 40 }, 'fred'));
+// => true
+ 
+console.log(_.includes('pebbles', 'eb'));
+// => true
+*/
+
+// 🆕2.3.size(collection)：返回collection（集合）的长度，如果集合是类数组或字符串，返回其 length ；如果集合是对象，返回其可枚举属性的个数。
+/*
+console.log(_.size([1, 2, 3]));
+// => 3
+ 
+console.log(_.size({ 'a': 1, 'b': 2 }));
+// => 2
+ 
+console.log(_.size('pebbles'));
+// => 7
+*/
+
+// 查找🚀
+
+// 🆕3.filter(collection, [predicate=_.identity]):遍历 collection（集合）元素，返回 predicate（断言函数）返回真值 的所有元素的数组。 predicate（断言函数）调用三个参数：(value, index|key, collection)。 
+// 过滤给定集合，并返回所有为真的结果集合
+/*
+var users = [
+    { 'user': 'barney', 'age': 36, 'active': true },
+    { 'user': 'fred',   'age': 40, 'active': false }
+  ];
+   
+  console.log(_.filter(users, function(o) { return !o.active; }));
+  // => objects for [ { user: 'fred', age: 40, active: false } ]
+   
+  // The `_.matches` iteratee shorthand.
+  console.log(_.filter(users, { 'age': 36, 'active': true }));
+  // => objects for [ { user: 'barney', age: 36, active: true } ]
+   
+  // The `_.matchesProperty` iteratee shorthand.
+  console.log(_.filter(users, ['active', false]));
+  // => objects for [ { user: 'fred', age: 40, active: false } ]
+   
+  // The `_.property` iteratee shorthand.
+  console.log(_.filter(users, 'active'));
+  // => objects for [ { user: 'barney', age: 36, active: true } ]
+  */
+
+// 🆕3.1.reject(collection, [predicate=_.identity])：_.filter的反向方法;此方法 返回 predicate（断言函数） 不 返回 truthy（真值）的collection（集合）元素（愚人码头注释：非真）。
+// 过滤给定集合，并返回所有为假的结果集合
+
+//   🆕3.2.find(collection, [predicate=_.identity], [fromIndex=0])：遍历 collection（集合）元素，返回 predicate（断言函数）第一个返回真值的第一个元素。predicate（断言函数）调用3个参数： (value, index|key, collection)。
+// 找到给定条件的元素，并返回第一个
+/*
+var users = [
+    { 'user': 'barney',  'age': 36, 'active': true },
+    { 'user': 'fred',    'age': 40, 'active': false },
+    { 'user': 'pebbles', 'age': 1,  'active': true }
+  ];
+   
+  console.log(_.find(users, function(o) { return o.age < 40; }));
+  // => object for 'barney'
+   
+  // The `_.matches` iteratee shorthand.
+  console.log(_.find(users, { 'age': 1, 'active': true }));
+  // => object for 'pebbles'
+   
+  // The `_.matchesProperty` iteratee shorthand.
+  console.log(_.find(users, ['active', false]));
+  // => object for 'fred'
+   
+  // The `_.property` iteratee shorthand.
+  console.log(_.find(users, 'active'));
+  // => object for 'barney'
+  */
+
+//  🆕3.3.findLast(collection, [predicate=_.identity], [fromIndex=collection.length-1])：这个方法类似_.find ，不同之处在于，_.findLast是从右至左遍历collection （集合）元素的。
+// 从右侧找到给定条件的元素，并返回第一个
+/*
+_.findLast([1, 2, 3, 4], function(n) {
+    return n % 2 == 1;
+  });
+  // => 3
+  */
+
+// 🆕3.4.sample(collection)：从collection（集合）中获得一个随机元素。
+/*
+console.log(_.sample([1, 2, 3, 4]));
+// => 2?
+*/
+
+// 🆕3.5.sampleSize(collection, [n=1])：从collection（集合）中获得 n 个随机元素。
+/*
+console.log(_.sampleSize([1, 2, 3], 2));
+// => [3, 1]?
+ 
+console.log(_.sampleSize([1, 2, 3], 4));
+// => [2, 3, 1]?
+*/
+
+// 遍历🚀
+
+// 🆕4.forEach(collection, [iteratee=_.identity])：调用 iteratee 遍历 collection(集合) 中的每个元素， iteratee 调用3个参数： (value, index|key, collection)。 如果迭代函数（iteratee）显式的返回 false ，迭代会提前退出。 
+// 别名_.each
+/*
+_([1, 2]).forEach(function(value) {
+    console.log(value);
+  });
+  // => Logs `1` then `2`.
+   
+  _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+    console.log(key);
+  });
+  // => Logs 'a' then 'b' (iteration order is not guaranteed).
+  */
+
+//   🆕4.1：forEachRight(collection, [iteratee=_.identity])：这个方法类似 _.forEach，不同之处在于，_.forEachRight 是从右到左遍历集合中每一个元素的。
+// 别名_.eachRight
+
+// 🆕4.1.map(collection, [iteratee=_.identity])：创建一个数组， value（值） 是 iteratee（迭代函数）遍历 collection（集合）中的每个元素后返回的结果。 iteratee（迭代函数）调用3个参数： (value, index|key, collection). 
+// 遍历得定集合并根据需求进行处理
+/*
+function square(n) {
+    return n * n;
+  }
+   
+  _.map([4, 8], square);
+  // => [16, 64]
+   
+  _.map({ 'a': 4, 'b': 8 }, square);
+  // => [16, 64] (iteration order is not guaranteed)
+   
+  var users = [
+    { 'user': 'barney' },
+    { 'user': 'fred' }
+  ];
+   
+  // The `_.property` iteratee shorthand.
+  _.map(users, 'user');
+  // => ['barney', 'fred']
+  */
+
+
+//   “Date” Methods（“日期”方法）
+
+// 🚀
+
+// 🆕1.now()：获得 Unix 纪元 (1 January 1970 00:00:00 UTC) 直到现在的毫秒数。
+/*
+_.defer(function(stamp) {
+    console.log(_.now() - stamp);
+  }, _.now());
+  // => 记录延迟函数调用的毫秒数
+*/
