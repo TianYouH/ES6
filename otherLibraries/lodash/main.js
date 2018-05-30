@@ -987,3 +987,95 @@ _.defer(function(stamp) {
   }, _.now());
   // => 记录延迟函数调用的毫秒数
 */
+
+
+// “Function” Methods（“函数”方法）⭐
+
+// 🆕after(n, func)：_.before的反向函数;此方法创建一个函数，当他被调用n或更多次之后将马上触发func 。
+// 在指定次数后调用函数
+/*
+var saves = ['profile', 'settings'];
+ 
+var done = _.after(saves.length, function(obj) { //两次之后会被调用
+  console.log('done saving!', obj);
+});
+ 
+_.forEach(saves, function(type, key) {
+  console.log(key)
+  done({ 'type': type, 'complete': done });
+});
+*/
+
+// 🆕ary(func, [n=func.length])：创建一个调用func的函数。调用func时最多接受 n个参数，忽略多出的参数。
+// 限制传递参数个数
+/*
+function parseInt(params) {
+  console.log(params)  
+}
+_.map(['6', '8', '10'], _.ary(parseInt, 1));
+
+// => [6, 8, 10]
+*/
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
+
+// 🆕
+
