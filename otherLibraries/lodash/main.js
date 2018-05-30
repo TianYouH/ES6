@@ -275,7 +275,105 @@ _.sortedUniqBy([1.1, 1.2, 2.3, 2.4], Math.floor);
 // => [1.1, 2.3]
 */
 
+// 🆕1.6.6.uniq(array)：创建一个去重后的array数组副本。使用了 SameValueZero 做等值比较。只有第一次出现的元素才会被保留。
+/*
+_.uniq([2, 1, 2]);
+// => [2, 1]
+*/
 
+// 🆕1.6.7.uniqBy(array, [iteratee=_.identity])：这个方法类似 _.uniq ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）的每个元素以产生唯一性计算的标准。iteratee 调用时会传入一个参数：(value)。
+/*
+console.log(_.uniqBy([2.1, 1.2, 2.3], Math.floor));
+// => [2.1, 1.2]
+ 
+// The `_.property` iteratee shorthand.
+console.log(_.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x'));
+// => [{ 'x': 1 }, { 'x': 2 }]
+*/
+
+// 🆕uniqWith(array, [comparator]):这个方法类似 _.uniq， 除了它接受一个 comparator 调用比较arrays数组的每一个元素。 comparator 调用时会传入2个参数： (arrVal, othVal)。
+/*
+var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 2 }];
+ 
+_.uniqWith(objects, _.isEqual);
+// => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }]
+*/
+
+// 🆕unzip(array):这个方法类似于_.zip，除了它接收分组元素的数组，并且创建一个数组，分组元素到打包前的结构。（愚人码头：返回数组的第一个元素包含所有的输入数组的第一元素，第一个元素包含了所有的输入数组的第二元素，依此类推。）
+
+/*
+var zipped = _.zip(['fred', 'barney'], [30, 40], [true, false]);
+// => [['fred', 30, true], ['barney', 40, false]]
+ 
+_.unzip(zipped);
+// => [['fred', 'barney'], [30, 40], [true, false]]
+*/
+
+// 🆕unzipWith(array, [iteratee=_.identity])：此方法类似于_.unzip，除了它接受一个iteratee指定重组值应该如何被组合。iteratee 调用时会传入每个分组的值： (...group)。
+/*
+var zipped = _.zip([1, 2], [10, 20], [100, 200]);
+// => [[1, 10, 100], [2, 20, 200]]
+ 
+_.unzipWith(zipped, _.add);
+// => [3, 30, 300]
+*/
+
+// 🆕without(array, [values])：创建一个剔除所有给定值的新数组，剔除值的时候，使用SameValueZero做相等比较。 注意: 不像 _.pull, 这个方法会返回一个新数组。
+/*
+_.without([2, 1, 2, 3], 1, 2);
+// => [3]
+*/
+
+// 🆕xor([arrays])：创建一个给定数组唯一值的数组，使用symmetric difference做等值比较。返回值的顺序取决于他们数组的出现顺序。
+/*
+_.xor([2, 1], [2, 3]);
+// => [1, 3]
+*/
+
+// 🆕xorBy([arrays], [iteratee=_.identity])：这个方法类似 _.xor ，除了它接受 iteratee（迭代器），这个迭代器 调用每一个 arrays（数组）的每一个值，以生成比较的新值。iteratee 调用一个参数： (value).
+/*
+_.xorBy([2.1, 1.2], [2.3, 3.4], Math.floor);
+// => [1.2, 3.4]
+ 
+// The `_.property` iteratee shorthand.
+_.xorBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+// => [{ 'x': 2 }]
+*/
+
+// 🆕xorWith([arrays], [comparator])：该方法是像 _.xor，除了它接受一个 comparator ，以调用比较数组的元素。 comparator 调用2个参数：(arrVal, othVal).
+/*
+var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+ 
+_.xorWith(objects, others, _.isEqual);
+// => [{ 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
+*/
+
+// 🆕zip([arrays])：创建一个分组元素的数组，数组的第一个元素包含所有给定数组的第一个元素，数组的第二个元素包含所有给定数组的第二个元素，以此类推。
+/*
+_.zip(['fred', 'barney'], [30, 40], [true, false]);
+// => [['fred', 30, true], ['barney', 40, false]]
+*/
+
+// 🆕zipObject([props=[]], [values=[]])：这个方法类似 _.fromPairs，除了它接受2个数组，第一个数组中的值作为属性标识符（属性名），第二个数组中的值作为相应的属性值。
+/*
+_.zipObject(['a', 'b'], [1, 2]);
+// => { 'a': 1, 'b': 2 }
+*/
+
+// 🆕zipObjectDeep([props=[]], [values=[]])：这个方法类似 _.zipObject，除了它支持属性路径。
+/*
+_.zipObjectDeep(['a.b[0].c', 'a.b[1].d'], [1, 2]);
+// => { 'a': { 'b': [{ 'c': 1 }, { 'd': 2 }] } }
+*/
+
+// 🆕zipWith([arrays], [iteratee=_.identity])：这个方法类似于_.zip，不同之处在于它接受一个 iteratee（迭代函数），来 指定分组的值应该如何被组合。 该iteratee调用每个组的元素： (...group).
+/*
+_.zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) {
+  return a + b + c;
+});
+// => [111, 222]
+*/
 
 // 处理：改变原值🚀
 
