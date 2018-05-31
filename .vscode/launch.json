@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceRoot}/12.Reflect/main.js"
+      "program": "${workspaceRoot}/14.Iterator和for...of/main.js"
     },
     {
       "type": "node",
