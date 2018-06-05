@@ -8,7 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceRoot}/14.Iterator和for...of/main.js"
+      "program": "${workspaceRoot}/15.Generator函数的语法/main.js"
     },
     {
       "type": "node",
