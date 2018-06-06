@@ -202,8 +202,8 @@ var i = g();
 console.log(i.next());
 
 try {
-    i.throw('a');   //第一个错误
-    i.throw('b');   //第二个错误
+    i.throw(new Error('内部错误')); //第一个错误
+    i.throw('b'); //第二个错误
 } catch (e) {
     console.log('外部捕获', e);
 }
@@ -215,6 +215,14 @@ try {
 上面代码中，遍历器对象i连续抛出两个错误。
     第一个错误被 Generator 函数体内的 catch 语句捕获。
     i 第二次抛出错误，由于 Generator 函数内部的 catch 语句已经执行过了，不会再捕捉到这个错误了，所以这个错误就被抛出了 Generator 函数体，被函数体外的 catch 语句捕获。
-*/ 
 
+    throw 方法可以接受一个参数，该参数会被 catch 语句接收，建议抛出 Error 对象的实例。 
+*/
 
+// ⭐throw 方法抛出的错误要被内部捕获，前提是必须至少执行过一次 next 方法 。
+
+// ⭐不要混淆遍历器对象的 throw 方法和全局的 throw 命令 。
+
+// ⭐如果 Generator 函数内部没有部署 try...catch 代码块，那么 throw 方法抛出的错误，将被外部 try...catch 代码块捕获。
+
+// ⭐如果 Generator 函数内部和外部，都没有部署try...catch代码块，那么程序将报错，直接中断执行。
