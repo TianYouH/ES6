@@ -9,7 +9,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "${workspaceFolder}/otherLibraries/test/index.js"
+      "program": "${workspaceFolder}/21.Calss 基本语法/main.js"
     }
   ]
 }
